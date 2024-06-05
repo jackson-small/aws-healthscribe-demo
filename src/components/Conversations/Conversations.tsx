@@ -18,6 +18,10 @@ import TableEmptyState from './TableEmptyState';
 import { columnDefs } from './tableColumnDefs';
 import { DEFAULT_PREFERENCES, TablePreferencesDef } from './tablePrefs';
 
+//const getCurrentUserId = () => 'current-user-id';
+//const getCurrentUser = () => 'current-user';
+
+
 type MoreHealthScribeJobs = {
     searchFilter?: ListHealthScribeJobsProps;
     NextToken?: string;
@@ -57,6 +61,8 @@ export default function Conversations() {
 
             const listResults: MedicalScribeJobSummary[] = listHealthScribeJobsRsp.MedicalScribeJobSummaries;
 
+            //const currentUserId = getCurrentUserId();
+            //const filteredResults = listResults.filter(job => job.SubmittedBy === currentUserId);
             // if NextToken is specified, append search results to existing results
             if (processedSearchFilter.NextToken) {
                 setHealthScribeJobs((prevHealthScribeJobs) => prevHealthScribeJobs.concat(listResults));

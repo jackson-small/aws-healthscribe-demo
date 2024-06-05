@@ -25,18 +25,18 @@ export default function SideNav({ activeHref }: SideNavProps) {
             text: 'New Conversation',
             href: '/new',
         },
-        { type: 'divider' },
+        /*{ type: 'divider' },
         {
             type: 'link',
             text: 'Generate Audio',
             href: '/generate',
-        },
+        },*/
         { type: 'divider' },
         {
             type: 'link',
             text: 'Settings',
             href: '/settings',
-        },
+        },/*
         { type: 'divider' },
         {
             type: 'link',
@@ -55,7 +55,7 @@ export default function SideNav({ activeHref }: SideNavProps) {
             text: 'Amazon Web Services',
             href: 'https://aws.amazon.com',
             external: true,
-        },
+        },*/
     ];
 
     return (
