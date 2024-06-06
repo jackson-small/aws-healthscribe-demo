@@ -17,6 +17,7 @@ import SpaceBetween from '@cloudscape-design/components/space-between';
 import Spinner from '@cloudscape-design/components/spinner';
 import StatusIndicator from '@cloudscape-design/components/status-indicator';
 import TokenGroup from '@cloudscape-design/components/token-group';
+import { Auth } from 'aws-amplify';
 
 import { MedicalScribeParticipantRole, StartMedicalScribeJobRequest } from '@aws-sdk/client-transcribe';
 import { Progress } from '@aws-sdk/lib-storage';
@@ -98,6 +99,16 @@ export default function NewConversation() {
         setIsSubmitting(true);
         setFormError('');
 
+        let username;
+        try {
+            const user = await Auth.currentAuthenticatedUser();
+            username = user.username;
+        } catch (error) {
+            setFormError('Failed to get username. Please try again.');
+            setIsSubmitting(false);
+            return;
+        }
+
         // build job params with StartMedicalScribeJob request syntax
         const audioParams =
             audioSelection === 'speakerPartitioning'
@@ -130,7 +141,7 @@ export default function NewConversation() {
         const uploadLocation = getUploadMetadata();
         const s3Location = {
             Bucket: uploadLocation.bucket,
-            Key: `${uploadLocation.key}/${(filePath as File).name}`,
+            Key: `${username}/${uploadLocation.key}/${(filePath as File).name}`,
         };
 
         const jobParams: StartMedicalScribeJobRequest = {
@@ -166,6 +177,7 @@ export default function NewConversation() {
                 Body: filePath as File,
                 ContentType: filePath?.type,
                 callbackFn: s3UploadCallback,
+                
             });
         } catch (e) {
             updateProgressBar({

@@ -15,7 +15,7 @@ type AppThemeContextType = {
 };
 
 const DEFAULT_APP_THEME = {
-    color: 'lightblue',
+    color: 'appTheme.light',
     density: 'density.comfortable',
 };
 
