@@ -1,20 +1,5 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: MIT-0
-
-import styles from './TopNav.module.css';
-
-import React, { Suspense, lazy, useEffect, useState } from 'react';
-
-import TopNavigation from '@cloudscape-design/components/top-navigation';
-import { TopNavigationProps } from '@cloudscape-design/components/top-navigation';
-import { Density, Mode, applyDensity, applyMode } from '@cloudscape-design/global-styles';
-
-import ModalLoader from '@/components/SuspenseLoader/ModalLoader';
-import { useAppThemeContext } from '@/store/appTheme';
-import { useAuthContext } from '@/store/auth';
-
-import './TopNav.css';
-
 const Auth = lazy(() => import('@/components/Auth'));
 
 type TopNavClick = {
@@ -147,12 +132,7 @@ export default function TopNav() {
             <TopNavigation
                 identity={{
                     href: '/',
-                    logo: (
-                        <div className={styles.Auribus}>
-                            <img className={styles.AuribusIcon} src="/AURIBUS.png" alt={"Auribus Technologies"} />
-                        </div>
-                    ),
-                    //title: 'Auribus Technologies',
+                    title: 'Auribus Technologies',
                 }}
                 utilities={navUtils}
             />
